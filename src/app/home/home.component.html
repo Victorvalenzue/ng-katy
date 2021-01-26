@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div style="font-size: 5rem;" *ngIf="submited; else formulario">Felicidades! 🤡</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 form-group">
+        <p style="font-size: 2rem;
+          font-weight: 700;
+          margin-top: 3rem;">
+          Mi submited es:: <span [ngStyle]="{'color': submited ? 'green' : 'red' }">{{ submited }}</span>
+        </p>
+          </div>
+          <ng-template #formulario>
+            <form [formGroup]="registerForm">
+              <div class="col-sm-12 form-group">
+                Name: <input class="form-control" type="text" formControlName="firstName">
+                <span *ngIf="firstNameIsValid"
+                  style="color: red">
+                  Por favor ingrese nombre
+                </span>
+              </div>
+              <div class="col-sm-12 form-group">
+                LastName: <input class="form-control" type="text" formControlName="lastName">
+                <span *ngIf="lastNameIsValid"
+                  style="color: red">
+                  Por favor ingrese apellido
+                </span>
+              </div>
+              <div class="col-sm-12 form-group">
+                <button type="button" class="btn btn-primary"
+                  [disabled]="registerForm.invalid"
+                  (click)="submit()">
+                  Sign up
+                </button>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+    </div>
+</div>
+
